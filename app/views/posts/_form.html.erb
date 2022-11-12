@@ -1,0 +1,21 @@
+<%= form_with model: post do |form| %>
+  <% if post.errors.any? %>
+    <ul>
+      <% post.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+  <div>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+  </div>
+  <%= form.submit %>
+<% end %>

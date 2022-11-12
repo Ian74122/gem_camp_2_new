@@ -1,0 +1,14 @@
+<%= form_with model: comment, url: path, data: { turbo: false } do |form| %>
+  <% if comment.errors.any? %>
+    <ul>
+      <% comment.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div>
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+  <%= form.submit %>
+<% end %>

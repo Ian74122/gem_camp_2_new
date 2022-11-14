@@ -9,4 +9,8 @@ Rails.application.routes.draw do
     resources :comments, except: :show
   end
   resources :categories
+
+  namespace :api do
+    resources :regions, only: :index, defaults: { format: :json }
+  end
 end

@@ -5,6 +5,10 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:categories, :user).page(params[:page]).per(5)
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts, each_serializer: PostSerializer }
+    end
   end
 
   def new

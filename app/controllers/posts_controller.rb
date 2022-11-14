@@ -26,6 +26,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @post, serializer: PostSerializer }
+    end
   end
 
   def edit

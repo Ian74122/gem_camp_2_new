@@ -17,6 +17,7 @@ class PostsController < ApplicationController
         end
         render plain: csv_string
       }
+      format.xml { render xml: @posts.as_json }
     end
   end
 

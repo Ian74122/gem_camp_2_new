@@ -15,7 +15,10 @@
       <td><%= post.title %></td>
       <td><%= post.content %></td>
       <td><%= post.categories.pluck(:name).join(',') %></td>
-      <td><%= post.user.email %></td>
+      <td data-controller="clipboard">
+        <span data-clipboard-target="email"><%= post.user.email %></span>
+        <button data-action="click->clipboard#copy">copy</button>
+      </td>
       <td><%= post.comments_count %></td>
       <td><%= image_tag post.image.url if post.image.present? %></td>
       <td>

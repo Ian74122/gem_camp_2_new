@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import ClipboardController from "./clipboard_controller";
 application.register("clipboard", ClipboardController)
+
+import LocationController from "./location_controller";
+application.register("location", LocationController)

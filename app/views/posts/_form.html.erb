@@ -1,4 +1,4 @@
-<%= form_with model: post do |form| %>
+<%= form_with model: post, data: { controller: :location } do |form| %>
   <% if post.errors.any? %>
     <ul>
       <% post.errors.each do |error| %>
@@ -19,6 +19,17 @@
   </div>
   <div>
     <%= form.file_field :image %>
+  </div>
+  <div>
+    <%= form.label :address_region_id %>
+    <%= form.collection_select :address_region_id,
+                               Address::Region.all, :id, :name,
+                               { prompt: 'pls select region' },
+                               data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
+  </div>
+  <div>
+    <%= form.label :address_province_id %>
+    <%= form.collection_select :address_province_id, [], nil, nil, { prompt: 'pls select province' }, data: { location_target: 'selectProvinceId' } %>
   </div>
   <%= form.submit %>
 <% end %>

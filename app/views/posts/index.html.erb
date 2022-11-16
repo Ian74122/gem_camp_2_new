@@ -7,6 +7,7 @@
   <td>category</td>
   <td>user</td>
   <td>comments count</td>
+  <td>address</td>
   <td>image</td>
   <td>action</td>
   </thead>
@@ -20,6 +21,7 @@
         <button data-action="click->clipboard#copy">copy</button>
       </td>
       <td><%= post.comments_count %></td>
+      <td><%= "#{post.region&.name} #{post.province&.name} #{post.address}" %></td>
       <td><%= image_tag post.image.url if post.image.present? %></td>
       <td>
         <%= link_to 'Show', post_path(post) %>

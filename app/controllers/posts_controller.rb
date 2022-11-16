@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   require 'csv'
 
   def index
-    @posts = Post.includes(:categories, :user).page(params[:page]).per(5)
+    @posts = Post.includes(:categories, :user, :region, :province).page(params[:page]).per(5)
     respond_to do |format|
       format.html
       format.json { render json: @posts, each_serializer: PostSerializer }

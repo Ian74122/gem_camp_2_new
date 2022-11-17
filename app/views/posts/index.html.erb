@@ -3,8 +3,8 @@
 <%= link_to 'export', posts_path(format: :csv) %>
 <table>
   <thead>
-  <td>title</td>
-  <td>content</td>
+  <td><%= Post.human_attribute_name(:title) %></td>
+  <td><%= Post.human_attribute_name(:content) %></td>
   <td>category</td>
   <td>user</td>
   <td>comments count</td>

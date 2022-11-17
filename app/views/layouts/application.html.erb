@@ -13,6 +13,7 @@
   <body class="container">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <%= t( "hello", name: current_user.email) if current_user %>
     <%= yield %>
   </body>
 </html>

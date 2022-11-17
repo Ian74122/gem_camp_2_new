@@ -1,0 +1,15 @@
+<h1>Admin Users</h1>
+<table class="table table-striped table-hover">
+  <thead>
+  <td>id</td>
+  <td>email</td>
+  <td>genre</td>
+  </thead>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.email %></td>
+    <td><%= user.genre %></td>
+  </tr>
+  <% end %>
+</table>

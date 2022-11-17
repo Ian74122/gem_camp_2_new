@@ -30,7 +30,8 @@ module App
     #
     config.time_zone = "Hong Kong"
     # config.eager_load_paths << Rails.root.join("extras")
-
+    config.i18n.default_locale = "en"
+    config.i18n.available_locales = [:en, 'zh-CN']
     # Don't generate system test files.
     config.generators.system_tests = nil
   end

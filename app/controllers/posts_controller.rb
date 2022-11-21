@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :validate_post_owner, only: [:edit, :update, :destroy]
   require 'csv'
 
   def index
@@ -44,9 +43,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post, :edit?, policy_class: PostPolicy
   end
 
   def update
+    authorize @post, :update?, policy_class: PostPolicy
     if @post.update(post_params)
       redirect_to posts_path
     else
@@ -55,6 +56,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post, :destroy?, policy_class: PostPolicy
     @post.destroy
     redirect_to posts_path
   end
@@ -69,10 +71,10 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, :image, :address_region_id, :address_province_id, category_ids: [])
   end
 
-  def validate_post_owner
-    unless @post.user == current_user
-      flash[:notice] = 'the post not belongs to you'
-      redirect_to posts_path
-    end
-  end
+  # def validate_post_owner
+  #   unless @post.user == current_user
+  #     flash[:notice] = 'the post not belongs to you'
+  #     redirect_to posts_path
+  #   end
+  # end
 end

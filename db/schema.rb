@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_17_021620) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_21_033718) do
   create_table "address_provinces", charset: "utf8mb4", force: :cascade do |t|
     t.string "code"
     t.string "name"
@@ -87,4 +87,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_021620) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+
+  create_view "post_count_previews", sql_definition: <<-SQL
+      select `posts`.`id` AS `post_id`,(select count(0) from `comments` where `comments`.`post_id` = `posts`.`id`) AS `count` from `posts`
+  SQL
 end

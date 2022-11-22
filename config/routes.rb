@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :posts do
       resources :comments, except: :show
     end
+    resources :top_ups, only: [:new, :create]
   end
   resources :categories
   constraints(AdminDomainConstraint.new) do

@@ -9,6 +9,8 @@ class TopUpsController < ApplicationController
     @order.amount = params[:order][:amount]
     @order.user = current_user
     @order.save
+    # job
+    OrderSlackNotifyJob.perform_later(@order.id)
     # call third party get a url
     # build callback api
     # start your server by ngrok
